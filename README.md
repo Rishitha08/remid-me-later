@@ -155,7 +155,7 @@ python app.py
 ##  Screenshots
 
 ![image](https://github.com/user-attachments/assets/bb2c3088-2364-4b7d-88c4-36f3119b03e4)
-![image](https://github.com/user-attachments/assets/576a01c6-af6b-439a-b9d5-1290e9678939)
+![image](https://github.com/user-attachments/assets/959d4923-bf0d-46fe-a604-89a0473fd564)
 ![WhatsApp Image 2025-06-08 at 22 41 02_d994ee32](https://github.com/user-attachments/assets/45d3af8a-bf5b-4061-915e-180af4ef53a7)
 ![WhatsApp Image 2025-06-08 at 22 42 16_30adeb53](https://github.com/user-attachments/assets/804cee86-0207-419e-a988-25e546d706f5)
 
