@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remind Me Later</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-bell"></i>
+                    <span>Remind Me Later</span>
+                </div>
+                <nav class="nav">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#reminders" class="nav-link">My Reminders</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Never Forget Again</h1>
+                    <p class="hero-subtitle">Set smart reminders that reach you exactly when and how you need them</p>
+                    <!-- Current Time Widget in Hero -->
+                    <div class="hero-time-widget">
+                        <div class="time-widget-card">
+                            <div class="widget-header">
+                                <i class="fas fa-clock"></i>
+                                <span>Current Time</span>
+                            </div>
+                            <div class="widget-time">
+                                <div id="heroCurrentTime" class="hero-time">--:--:--</div>
+                                <div id="heroCurrentDate" class="hero-date">Loading...</div>
+                                <div id="heroTimezone" class="hero-timezone">Loading timezone...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-form">
+                    <div class="form-card">
+                        <h2 class="form-title">Create New Reminder</h2>
+                        <form id="reminderForm" class="reminder-form">
+                            <div class="form-group">
+                                <label for="message" class="form-label">
+                                    <i class="fas fa-comment-alt"></i>
+                                    What should we remind you about?
+                                </label>
+                                <textarea 
+                                    id="message" 
+                                    name="message" 
+                                    class="form-input" 
+                                    placeholder="e.g., Call mom for her birthday"
+                                    rows="3"
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="date" class="form-label">
+                                        <i class="fas fa-calendar"></i>
+                                        Date
+                                    </label>
+                                    <input 
+                                        type="date" 
+                                        id="date" 
+                                        name="date" 
+                                        class="form-input"
+                                        required
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <label for="time" class="form-label">
+                                        <i class="fas fa-clock"></i>
+                                        Time
+                                    </label>
+                                    <input 
+                                        type="time" 
+                                        id="time" 
+                                        name="time" 
+                                        class="form-input"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-paper-plane"></i>
+                                    How should we remind you?
+                                </label>
+                                <div class="method-selector">
+                                    <label class="method-option">
+                                        <input type="radio" name="reminder_method" value="email" checked>
+                                        <span class="method-card">
+                                            <i class="fas fa-envelope"></i>
+                                            <span>Email</span>
+                                        </span>
+                                    </label>
+                                    <label class="method-option">
+                                        <input type="radio" name="reminder_method" value="sms">
+                                        <span class="method-card">
+                                            <i class="fas fa-sms"></i>
+                                            <span>SMS</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Contact Information Fields -->
+                            <div id="emailField" class="form-group contact-field">
+                                <label for="email_address" class="form-label">
+                                    <i class="fas fa-envelope"></i>
+                                    Email Address
+                                </label>
+                                <input 
+                                    type="email" 
+                                    id="email_address" 
+                                    name="email_address" 
+                                    class="form-input"
+                                    placeholder="your.email@example.com"
+                                >
+                            </div>
+
+                            <div id="phoneField" class="form-group contact-field" style="display: none;">
+                                <label for="phone_number" class="form-label">
+                                    <i class="fas fa-phone"></i>
+                                    Phone Number
+                                </label>
+                                <input 
+                                    type="tel" 
+                                    id="phone_number" 
+                                    name="phone_number" 
+                                    class="form-input"
+                                    placeholder="+919150952849"
+                                >
+                            </div>
+
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-plus"></i>
+                                Create Reminder
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reminders Section -->
+    <section class="reminders-section" id="reminders">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Your Reminders</h2>
+                <!-- ADDED: Clear Reminders and Time Display -->
+                <div class="section-controls">
+                    <div class="section-time-display">
+                        <i class="fas fa-clock"></i>
+                        <span id="sectionCurrentTime" class="section-time">--:--:--</span>
+                    </div>
+                    <button id="clearAllBtn" class="clear-all-btn">
+                        <i class="fas fa-trash-alt"></i>
+                        Clear All Reminders
+                    </button>
+                </div>
+            </div>
+            <div id="remindersList" class="reminders-grid">
+                <!-- Reminders will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h3>Reminder Created!</h3>
+            </div>
+            <p>Your reminder has been successfully created and scheduled.</p>
+            <button onclick="closeModal()" class="modal-btn">Got it</button>
+        </div>
+    </div>
+
+    <!-- ADDED: Clear Confirmation Modal -->
+    <div id="clearConfirmModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-exclamation-triangle warning-icon"></i>
+                <h3>Clear All Reminders?</h3>
+            </div>
+            <p>Are you sure you want to delete all reminders? This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button onclick="closeClearModal()" class="modal-btn secondary">Cancel</button>
+                <button onclick="confirmClearAll()" class="modal-btn danger">Clear All</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADDED: Clear Success Modal -->
+    <div id="clearSuccessModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h3>Reminders Cleared!</h3>
+            </div>
+            <p>All reminders have been successfully deleted.</p>
+            <button onclick="closeClearSuccessModal()" class="modal-btn">Got it</button>
+        </div>
+    </div>
+
+    <!-- Error Toast -->
+    <div id="errorToast" class="toast error-toast">
+        <i class="fas fa-exclamation-circle"></i>
+        <span id="errorMessage"></span>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
