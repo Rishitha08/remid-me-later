@@ -51,7 +51,6 @@
 
 ## UI/UX Design
 
-- **Samsung-inspired look:** Uses a black primary color scheme, rounded cards, and smooth gradients for a premium, modern feel.
 - **Responsive design:** Works seamlessly on desktops, tablets, and mobiles.
 - **Live time widget:** Contextual time and timezone display in the hero and reminders section.
 - **Clear all reminders:** Prominent, safe, and accessible bulk action with confirmation modal.
