@@ -197,7 +197,7 @@ python app.py
 ##  UI/UX Design Tools & Principles
 
 - **Figma** (for wireframing and prototyping)
-- **Custom CSS** (Samsung-inspired, black primary color scheme)
+- **Custom CSS** (black primary color scheme)
 - **Responsive design** (media queries, mobile-first)
 - **Accessible navigation and controls**
 - **Live feedback and animations**
