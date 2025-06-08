@@ -1,0 +1,77 @@
+Commands to start
+
+pip install requirements.txt
+
+cd remind-me-later-complete
+python -m venv venv
+source venv/bin/activate
+
+pip install flask flask-sqlalchemy celery redis twilio python-dotenv schedule
+
+------------------------------------------------------------------------------------
+
+# Flask Configuration
+SECRET_KEY=your-super-secret-key-here
+DATABASE_URI=sqlite:///reminders.db
+
+# Celery Configuration
+CELERY_BROKER_URL=redis://localhost:6379/0
+CELERY_RESULT_BACKEND=redis://localhost:6379/0
+
+# Twilio Configuration (Sign up at twilio.com)
+TWILIO_ACCOUNT_SID=your_twilio_account_sid
+TWILIO_AUTH_TOKEN=your_twilio_auth_token
+TWILIO_PHONE_NUMBER=+1234567890
+
+# Email Configuration (using Gmail)
+SMTP_SERVER=smtp.gmail.com
+SMTP_PORT=587
+EMAIL_ADDRESS=your-email@gmail.com
+EMAIL_PASSWORD=your-app-password
+
+TIMEZONE=Asia/Kolkata
+------------------------------------------------------------------------------------
+
+For Sms
+
+Setup Twilio Account:
+
+1. Sign up at twilio.com
+
+2. Get your Account SID and Auth Token from the console
+
+3. Purchase a phone number for SMS
+
+Add these to your .env file
+
+------------------------------------------------------------------------------------
+
+Setup Email (Gmail)
+
+1. Enable 2-factor authentication on your Gmail account
+
+2. Generate an App Password for your application
+   2.1. Go to 'Security'
+   2.2. Search 'app' passwords'
+   2.3. In App name enter 'app' and click create.
+   2.4. 16 digit app password will be created pste it in .env
+
+3. Add your email and app password to .env file
+
+
+
+#Terminal 1
+source venv/bin/activate
+redis-server
+
+#Terminal 2
+source venv/bin/activate
+celery -A tasks beat --loglevel=info
+
+#Terminal 3
+source venv/bin/activate
+celery -A tasks worker --loglevel=info
+
+#Terminal 4
+source venv/bin/activate
+python app.py
